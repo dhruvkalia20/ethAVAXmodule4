@@ -12,7 +12,7 @@ constructor: The constructor function sets the name and symbol of the token duri
 
 2. transfer: The standard ERC-20 transfer function to send tokens from the sender's address to a specified recipient.
 
-3. redeem: The redeem function allows token holders to burn their tokens, effectively reducing the total supply. The tokens are permanently destroyed, and the balance of the sender will decrease accordingly.
+3. redeem: The redeem function allows token holders to burn their tokens, effectively reducing the total supply. The tokens are permanently destroyed, and the balance of the sender will decrease accordingly and also console.log will print the given statement if the burn function executes successfully.
 
 4. currentbalance: This function allows anyone to query the balance of DGN tokens for a specific address.
 
@@ -50,7 +50,7 @@ contract DegenToken is ERC20, Ownable {
     }
     function redeem(uint _value )external{
         _burn(msg.sender,_value);
-
+        console.log("The amount of tokens redeemed successfully are: " ,_value);
     }
     function currentbalance(address _address)external view returns(uint){
         return balanceOf(_address);
