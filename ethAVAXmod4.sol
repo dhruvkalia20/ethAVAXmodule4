@@ -19,6 +19,7 @@ contract DegenToken is ERC20, Ownable {
     }
     function redeem(uint _value )external{
         _burn(msg.sender,_value);
+        console.log("The amount of tokens redeemed successfully are: " ,_value);
 
     }
     function currentbalance(address _address)external view returns(uint){
