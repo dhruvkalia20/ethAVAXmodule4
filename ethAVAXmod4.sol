@@ -8,7 +8,7 @@ import "hardhat/console.sol";
 
 contract DegenToken is ERC20, Ownable {
 
-    constructor() ERC20("Degen", "DGN") {}
+    constructor() ERC20("Dhruv", "DHR") {}
 
         function mint(address _to, uint256 _value) public onlyOwner {
             _mint(_to, _value);
@@ -17,10 +17,27 @@ contract DegenToken is ERC20, Ownable {
          _transfer(msg.sender,_to,_value);
          return true;
     }
-    function redeem(uint _value )external{
-        _burn(msg.sender,_value);
-        console.log("The amount of tokens redeemed successfully are: " ,_value);
+    function redeem_PUBG(uint _input)external payable returns(bool)
+    { 
+      require(_input<=3&&_input>0,"Please Enter the input between 1 to 3");
+      if(_input==1){
+          require(this.balanceOf(msg.sender)>=100,"Not enough token to buy the outfit");
+          approve(msg.sender,100);
+          transferFrom(msg.sender,owner(),100);
 
+          return true;
+      }
+      else if(_input==2)
+      {
+          require(this.balanceOf(msg.sender)>=200,"The gun crate cannot be opened as unsufficient balance");
+          approve(msg.sender,200);
+          return true;
+      }
+      else{
+          require(this.balanceOf(msg.sender)>=500,"Unsufficient Tokens for X-suit");
+          approve(msg.sender,500);
+          return true;
+      }
     }
     function currentbalance(address _address)external view returns(uint){
         return balanceOf(_address);
